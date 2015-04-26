@@ -29,11 +29,7 @@ void clearScreen(void)
 
 #endif
 
-#ifdef __linux
-#include <time.h>
-#endif
-
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(__linux)
 #include <time.h>
 #include <termios.h>
 #include <unistd.h>
@@ -268,7 +264,7 @@ int main(int argc, char *argv[])
 						break;
 					case 'q':
 #ifdef CONSOLE_OUT
-						printf("\nQuit.");
+						printf("\nQuit.\n");
 #endif
 						fprintf(logfile,"%d:%d(Quit):End(livecells = %d)\n", k, i, lifegame->livecells);
 						exit(EXIT_SUCCESS);
